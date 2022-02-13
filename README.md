@@ -1,2 +1,3 @@
-# pre-commit-hook-prevent-large-file-commit
-Pre commit hook set up to prevent commit of large files to the repo
+# Git and Github contribution best practices
+
+Repository with best practices instruction for collaborating politely and safely with Git and Github

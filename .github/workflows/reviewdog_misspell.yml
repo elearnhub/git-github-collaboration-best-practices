@@ -23,13 +23,14 @@ jobs:
         # step 1: usually used as first step (https://github.com/actions/checkout)
       - name: Check out code.
         uses: actions/checkout@v2
-        # step 2: imports other repos 
+        # step 2: imports other repos
       - name: misspell
         # this points to the given repository https://github.com/reviewdog/action-misspell
-        uses: reviewdog/action-misspell@master
+        uses: reviewdog/action-misspell@v1.8.1
         # parameters used by the repo
         with:
           github_token: ${{ secrets.github_token }}
-          locale: "US"
-          reporter: github-pr-check 
-          level: warning
+          locale: "UK"
+          reporter: github-pr-review
+          level: error
+          exclude: "*.css"

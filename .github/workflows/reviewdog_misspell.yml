@@ -1,16 +1,35 @@
+# name of action
 name: reviewdog
+# when the action will be executed
 on:
+  # only on this event
+  # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows  
   pull_request:
+    # only on these specific types of the event 
     types: [opened, reopened, synchronize, closed]
 
+
 jobs:
+  # this is a job 
+  # the name can be arbitrary 
   misspell:
+    # these argument names are reserved and mandatory but their value is free text
     name: runner / misspell
+    # in which environment it runs
+    # github hosted runners, which can be used for Github Actions runs-on field:
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#choosing-github-hosted-runners 
     runs-on: ubuntu-latest
     steps:
+        # step 1: usually used as first step (https://github.com/actions/checkout)
       - name: Check out code.
         uses: actions/checkout@v2
+        # step 2: imports other repos 
       - name: misspell
+        # this points to the given repository https://github.com/reviewdog/action-misspell
         uses: reviewdog/action-misspell@master
+        # parameters used by the repo
         with:
           github_token: ${{ secrets.github_token }}
+          locale: "US"
+          reporter: github-pr-check 
+          level: warning
